@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ bookinstance.book.title }}</h1>
+
+  <p><strong>Author:</strong> <a href="{{ bookinstance.book.author.get_absolute_url }}">{{ bookinstance.book.author }}</a></p>
+  <!-- author detail link not yet defined -->
+  <p><strong>Summary:</strong> {{ bookinstance.book.summary }}</p>
+  <p><strong>ISBN:</strong> {{ bookinstance.book.isbn }}</p>
+  <p><strong>Language:</strong> {{ bookinstance.book.language }}</p>
+  <p><strong>Genre:</strong> {{ bookinstance.book.genre.all|join:", " }}</p>
+  <p><strong>Imprint:</strong> {{ bookinstance.imprint }}</p>
+  <p><strong>Due Back:</strong> {{ bookinstance.due_back }}</p>
+  <p><strong>Status:</strong> <span 
+    class="{% if bookinstance.status == 'a' %}text-success{% elif bookinstance.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+    {{ bookinstance.get_status_display}}</span></p>
+  <p><strong>Borrower:</strong> {{ bookinstance.borrower }}</p>
+
+
+{% endblock %}
+
+
